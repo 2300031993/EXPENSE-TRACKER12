@@ -1,0 +1,61 @@
+/* src/App.css - dark theme styling and layout */
+:root{
+  --bg:#071226;
+  --panel:#0b2136;
+  --muted:#9fb0bf;
+  --accent:#1f6f8b;
+  --card:#0f2b3f;
+}
+
+body {
+  background: var(--bg);
+  color: #cfe8f2;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Layout */
+.app-shell { display: flex; min-height: 100vh; }
+.app-sidebar {
+  width: 240px; background: linear-gradient(180deg,#071a2a,#052032);
+  color: #cfe8f2; padding: 20px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.brand { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+.brand-icon { font-size:28px; background: #0d2a3a; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:8px; }
+.brand-title{ font-weight:700; font-size:18px; }
+
+.sidebar-nav { list-style:none; padding:0; margin:0; }
+.sidebar-item { margin-bottom:8px; }
+.sidebar-link { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--muted); padding:10px; border-radius:8px; }
+.sidebar-link:hover, .sidebar-item.active .sidebar-link { background: rgba(255,255,255,0.03); color:#fff; }
+
+.sidebar-bottom { padding-top:10px; }
+.btn-logout { width:100%; background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 10px; border-radius:6px; }
+
+/* Main area */
+.main-area { flex:1; display:flex; flex-direction:column; min-height:100vh; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.03); background: linear-gradient(90deg, rgba(5,20,31,0.6), rgba(6,22,36,0.6)); }
+.topbar h3{ margin:0; color:#9fd7ff; }
+.profile { display:flex; align-items:center; gap:10px; }
+.profile-pic { width:44px; height:44px; border-radius:50%; background:linear-gradient(45deg,#2a8fbf,#7ad3ff); display:flex; align-items:center; justify-content:center; color:#001; font-weight:700; }
+.profile-info .profile-name{ font-weight:700; color:#cfe8f2; }
+.profile-info .profile-email{ color:var(--muted); font-size:12px; }
+
+/* Main content */
+.main-content { background: linear-gradient(180deg, rgba(1,12,18,0.0), rgba(1,12,18,0.0)); min-height:calc(100vh - 70px); }
+
+.card-dark { background: var(--panel); border-radius:8px; border:1px solid rgba(255,255,255,0.03); color:var(--muted); }
+.card-stat { background: linear-gradient(90deg,#07273b, #0b344a); border-radius:8px; color:#fff; }
+
+.auth-page { display:flex; align-items:center; justify-content:center; min-height:80vh; }
+.auth-card { width:380px; background:var(--panel); padding:20px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); }
+
+/* tables/forms tweaks */
+.table-dark { background:transparent; border-radius:6px; }
+.form-control { background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.06); }
+.form-control:focus { box-shadow:none; border-color: rgba(160,220,255,0.15); }
+
+/* small responsive */
+@media (max-width: 768px) {
+  .app-sidebar { display:none; }
+  .main-content { padding:16px; }
+}

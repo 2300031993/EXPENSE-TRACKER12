@@ -1,0 +1,83 @@
+.transaction-history {
+  background-color: #0b1736;
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #7ea6f4;
+  margin-bottom: 1rem;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-bar select,
+.filter-bar input {
+  background-color: #1e2a4a;
+  color: #cfd9ff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  outline: none;
+  flex: 1;
+}
+
+.date-section {
+  margin-bottom: 2rem;
+}
+
+.date-header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9ab8ff;
+  margin-bottom: 0.8rem;
+}
+
+.transaction-card {
+  background-color: #1b2646;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.transaction-card:hover {
+  background-color: #25345d;
+}
+
+.transaction-info p {
+  font-size: 0.8rem;
+  color: #a8b2d1;
+  margin-top: 0.3rem;
+}
+
+.transaction-amount {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.transaction-amount.expense {
+  color: #ff6b6b;
+}
+
+.transaction-amount.income {
+  color: #36ff9f;
+}
+
+.no-transactions {
+  color: #b0bbda;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
