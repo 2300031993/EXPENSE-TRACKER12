@@ -1,0 +1,93 @@
+.app-sidebar {
+  position: fixed; /* 🧲 Keeps sidebar always visible */
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0b132b, #1c2541);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  overflow-y: auto; /* Enables scroll inside sidebar if too long */
+}
+
+/* Brand Section */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.brand-icon {
+  font-size: 28px;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Navigation */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sidebar-item .sidebar-link {
+  display: flex;
+  align-items: center;
+  color: #cfd8e3;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-item.active .sidebar-link,
+.sidebar-item .sidebar-link:hover {
+  background: #1e2a47;
+  color: #fff;
+}
+
+/* Bottom Section (Logout button etc.) */
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: #ff7675;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 118, 117, 0.1);
+}
+
+/* 🧱 Main content wrapper to avoid sidebar overlap */
+.app-main-content {
+  margin-left: 250px; /* Same width as sidebar */
+  padding: 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  overflow-y: auto;
+}

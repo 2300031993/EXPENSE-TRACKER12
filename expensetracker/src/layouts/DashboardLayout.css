@@ -1,0 +1,20 @@
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  background-color: #0b1622;
+  color: white;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f1e2e;
+  overflow-y: auto;
+}
+
+.dashboard-main {
+  flex-grow: 1;
+  padding: 1.5rem;
+  background-color: #0f1e2e;
+}

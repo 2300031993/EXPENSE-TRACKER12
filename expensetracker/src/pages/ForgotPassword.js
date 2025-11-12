@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./AuthForms.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -9,17 +10,26 @@ function ForgotPassword() {
 
   const handleReset = (e) => {
     e.preventDefault();
-    alert("Password reset link sent to your email (demo message).");
+    alert("🔗 Password reset link sent to your email (demo message).");
     navigate("/login");
   };
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h2 className="text-center mb-4">Forgot Password</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="auth-card"
+      >
+        <h2 className="auth-title">Forgot Password</h2>
+        <p className="text-muted" style={{ marginBottom: "1.2rem", color: "#aaa" }}>
+          Enter your registered email and we’ll send you a reset link.
+        </p>
+
         <form onSubmit={handleReset}>
-          <div className="mb-3">
-            <label className="form-label">Enter Your Registered Email</label>
+          <div className="form-group">
+            <label className="form-label">Email Address</label>
             <input
               type="email"
               className="form-control"
@@ -30,11 +40,29 @@ function ForgotPassword() {
             />
           </div>
 
-          <button type="submit" className="btn btn-warning w-100 mt-2">
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="login-btn"
+            style={{
+              background: "linear-gradient(135deg, #079cffff, #00bbffff)",
+              boxShadow: "0 0 10px #2cf1ffff",
+            }}
+          >
             Send Reset Link
-          </button>
+          </motion.button>
         </form>
-      </div>
+
+        <div className="auth-links mt-3">
+          <p className="register-text">
+            Remember your password?{" "}
+            <a href="/login" className="link-register">
+              Back to Login
+            </a>
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 }

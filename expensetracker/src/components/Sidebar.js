@@ -1,7 +1,9 @@
 // src/components/Sidebar.js
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaTachometerAlt, FaHistory, FaPlus, FaSave, FaChartBar, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaTachometerAlt, FaHistory, FaPlus, FaSave, FaChartBar, FaCog, FaSignOutAlt, FaDownload } from "react-icons/fa";
+import "./Sidebar.css";
+
 
 export default function Sidebar() {
   const loc = useLocation().pathname;
@@ -34,6 +36,8 @@ export default function Sidebar() {
         {navItem("/new-transaction", "New Transaction", <FaPlus />)}
         {navItem("/saved", "Saved Transactions", <FaSave />)}
         {navItem("/statistics", "Statistics", <FaChartBar />)}
+        {navItem("/budget-tracker", "Budget Tracker", <FaChartBar />)}
+        {navItem("/reports", "Reports", <FaDownload />)}
         {navItem("/settings", "Settings", <FaCog />)}
       </ul>
 

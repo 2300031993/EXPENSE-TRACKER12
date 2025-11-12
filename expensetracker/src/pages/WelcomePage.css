@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --neon-blue: #00d4ff;
+  --neon-pink: #ff00c8;
+  --bg-dark: #050505;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --text-light: #e4e4e4;
+  --text-muted: #9b9b9b;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.welcome-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at top right, #0a0a0a, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--text-light);
+}
+
+/* Floating background icons */
+.background-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-icon {
+  position: absolute;
+  color: var(--neon-blue);
+  opacity: 0.15;
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+/* Centered card */
+.welcome-card {
+  position: relative;
+  z-index: 2;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 3rem 3.5rem;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.15),
+              inset 0 0 20px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: floatCard 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-10px); }
+}
+
+.welcome-card h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.welcome-card h1 span {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.welcome-card p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+/* Get Started Button */
+.get-started {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.get-started:hover {
+  box-shadow: 0 0 25px rgba(255, 0, 200, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .welcome-card {
+    padding: 2rem 1.5rem;
+    width: 90%;
+  }
+
+  .welcome-card h1 {
+    font-size: 2.2rem;
+  }
+
+  .welcome-card p {
+    font-size: 1rem;
+  }
+}

@@ -1,63 +1,120 @@
+/* Common full-page layout */
 .auth-container {
-  height: 100vh;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #000000, #111111);
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow: hidden;
 }
 
+/* Glassmorphism card */
 .auth-card {
-  background-color: #0b132b;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  width: 350px;
-  color: white;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 2.8rem 2.5rem;
+  width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
+.auth-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Title */
 .auth-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: white;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #00d4ff;
+  margin-bottom: 1.8rem;
+}
+
+/* Input fields */
+.form-group {
+  text-align: left;
+  margin-bottom: 1.2rem;
 }
 
 .form-label {
-  color: white;
-  font-weight: 500;
+  font-size: 0.9rem;
+  color: #bbb;
+  display: block;
+  margin-bottom: 0.4rem;
 }
 
 .form-control {
-  background: transparent;
-  border: 1px solid #3a3a5a;
-  color: white;
-  margin-bottom: 1rem;
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 5px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.form-control::placeholder {
-  color: #e0e0e0;
+.form-control:focus {
+  border-color: #00d4ff;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.btn-primary {
-  background-color: #007bff;
+/* Buttons */
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00d4ff, #007bff);
   border: none;
-  padding: 0.6rem;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.auth-links {
-  text-align: center;
+  border-radius: 10px;
+  padding: 12px 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
   margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.link-light {
-  color: #00bfff;
+.login-btn:hover {
+  background: linear-gradient(135deg, #00f7ff, #3399ff);
+  box-shadow: 0 0 10px #00d4ff;
+}
+
+/* Links section */
+.auth-links {
+  margin-top: 1.8rem;
+}
+
+.link-register,
+.link-forgot {
+  color: #00d4ff;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
-.link-light:hover {
-  text-decoration: underline;
+.link-register:hover,
+.link-forgot:hover {
+  color: #66e0ff;
+}
+
+.register-text {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .auth-card {
+    width: 90%;
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-title {
+    font-size: 1.5rem;
+  }
 }

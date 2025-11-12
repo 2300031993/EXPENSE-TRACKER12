@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NewTransaction.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const NewTransaction = () => {
   const [transaction, setTransaction] = useState({
@@ -13,23 +14,59 @@ const NewTransaction = () => {
 
   const navigate = useNavigate();
 
+  // ✅ Handle form input changes
   const handleChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // ✅ Submit form and add transaction
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-    transactions.push(transaction);
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+    try {
+      // Fetch user email from localStorage (make sure it's saved at login)
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userEmail = user?.email;
 
-    alert("Transaction added successfully!");
-    navigate("/dashboard");
+      if (!userEmail) {
+        alert("⚠️ User not logged in. Please log in again.");
+        navigate("/login");
+        return;
+      }
+
+      const transactionData = {
+        ...transaction,
+        userEmail,
+        amount: parseFloat(transaction.amount),
+      };
+
+      // ✅ Send POST request to backend
+      await axios.post("http://localhost:8081/api/transactions", transactionData);
+
+      // ✅ Notify all pages that a transaction was added
+      window.dispatchEvent(new Event("transactionUpdated")); // 👈 This line triggers Reports.jsx to refresh
+
+      alert("✅ Transaction added successfully!");
+
+      // ✅ Clear form
+      setTransaction({
+        title: "",
+        amount: "",
+        category: "",
+        type: "income",
+        date: "",
+      });
+
+      // ✅ Redirect to dashboard or any page you want
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("❌ Error adding transaction:", error);
+      alert("Failed to add transaction. Please check backend connection.");
+    }
   };
 
   const handleCancel = () => {
-    navigate("/dashboard"); // goes back to dashboard
+    navigate("/dashboard");
   };
 
   return (
@@ -117,7 +154,6 @@ const NewTransaction = () => {
             />
           </div>
 
-          {/* Buttons */}
           <div className="button-group">
             <button type="submit" className="submit-btn">
               Add Transaction

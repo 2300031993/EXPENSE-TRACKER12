@@ -59,3 +59,70 @@ body {
   .app-sidebar { display:none; }
   .main-content { padding:16px; }
 }
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  background-color: #0e1b2a;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #0e1b2a;
+  overflow-y: auto;
+}
+
+/* Layout Wrapper */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Fixed Sidebar */
+.app-shell .app-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0b132b, #1c2541);
+  z-index: 1000;
+}
+
+/* Main Area */
+.main-area {
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Topbar */
+.main-area > .topbar {
+  flex-shrink: 0;
+  background-color: #111927;
+  color: #fff;
+  padding: 15px 25px;
+  border-bottom: 1px solid #1e2a47;
+  z-index: 900;
+}
+
+/* Scrollable Main Content */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 30px;
+  background-color: #0d141b;
+  color: #fff;
+}
+

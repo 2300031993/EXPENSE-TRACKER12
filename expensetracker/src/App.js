@@ -1,10 +1,18 @@
 // src/App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 
+
+// ✅ Pages
+import WelcomePage from "./pages/WelcomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -13,28 +21,25 @@ import NewTransaction from "./pages/NewTransaction";
 import TransactionHistory from "./pages/TransactionHistory";
 import Statistics from "./pages/Statistics";
 import Settings from "./pages/Settings";
+import SavedTransactions from "./pages/SavedTransactions";
+import Reports from "./pages/Reports";
+import BudgetTracker from "./pages/BudgetTracker"; // ✅ Newly added
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
+// ✅ Common Layout Wrapper for Sidebar + Topbar
 function AppLayout({ children }) {
   return (
     <div className="app-shell">
+      {/* Left Sidebar */}
       <Sidebar />
+
+      {/* Right Main Section */}
       <div className="main-area">
         <Topbar />
-        <div
-          className="main-content container-fluid"
-          style={{
-            padding: "15px 25px",
-            marginTop: "-10px", //
-            minHeight: "100vh",
-            backgroundColor: "#0d141b", // blends nicely with dashboard
-          }}
-        >
-          {children}
-        </div>
+        <div className="main-content">{children}</div>
       </div>
     </div>
   );
@@ -43,13 +48,18 @@ function AppLayout({ children }) {
 function App() {
   return (
     <Router>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-right" autoClose={3000} />
+
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        {/* 🌟 Welcome Page */}
+        <Route path="/" element={<WelcomePage />} />
+
+        {/* 🌐 Public Routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot" element={<ForgotPassword />} />
 
+        {/* 🔐 Protected Routes */}
         <Route
           path="/dashboard"
           element={
@@ -84,11 +94,45 @@ function App() {
         />
 
         <Route
+          path="/saved"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <SavedTransactions />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/statistics"
           element={
             <ProtectedRoute>
               <AppLayout>
                 <Statistics />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <Reports />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* 💰 Budget Tracker Route */}
+        <Route
+          path="/budget-tracker"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <BudgetTracker />
               </AppLayout>
             </ProtectedRoute>
           }
@@ -105,10 +149,15 @@ function App() {
           }
         />
 
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {/* 🚦 Redirect Unknown URLs */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
 }
+
+    
+ 
+
 
 export default App;

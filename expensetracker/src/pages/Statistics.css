@@ -1,0 +1,89 @@
+.statistics-page {
+  background-color: #0b0b0b;
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.stats-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #00cec9;
+}
+
+.stats-cards {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.stats-card {
+  width: 250px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.income {
+  background-color: #00b894;
+}
+
+.expense {
+  background-color: #d63031;
+}
+
+.savings {
+  background-color: #0984e3;
+}
+
+.zone-indicator {
+  text-align: center;
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.zone-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.zone-progress {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1.2s ease-in-out;
+}
+
+.zone-indicator span {
+  font-weight: bold;
+  color: #fffa65;
+}
+
+.charts-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.chart-box {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  width: 500px;
+}
+
+.no-data {
+  color: #aaa;
+  text-align: center;
+  padding-top: 2rem;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
 import "./AuthForms.css";
 
 const LoginPage = () => {
@@ -7,35 +9,38 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    try {
+      const response = await axios.post("http://localhost:8081/api/users/login", {
+        email: email.trim().toLowerCase(),
+        password,
+      });
 
-    if (!storedUser) {
-      alert("No user found. Please register first!");
-      navigate("/register");
-      return;
-    }
+      const userData = response.data;
+      localStorage.setItem("userEmail", userData.email);
+      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("isLoggedIn", "true");
 
-    if (
-      storedUser.email === email.trim().toLowerCase() &&
-      storedUser.password === password
-    ) {
-      alert("Login successful!");
-      // ✅ Store login session
-      localStorage.setItem("isLoggedIn", true);
-      // ✅ Redirect to Dashboard immediately
+      alert("✅ Login successful!");
       navigate("/dashboard");
-    } else {
-      alert("Invalid credentials. Please try again.");
+    } catch (err) {
+      console.error("❌ Login error:", err);
+      alert(err.response?.data?.message || "Invalid credentials. Please try again.");
     }
   };
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h2 className="auth-title">Login</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="auth-card"
+      >
+        <h2 className="auth-title">Login to Expense Tracker</h2>
+
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label className="form-label">Email Address</label>
@@ -48,6 +53,7 @@ const LoginPage = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label className="form-label">Password</label>
             <input
@@ -60,25 +66,30 @@ const LoginPage = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100 mt-2">
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="login-btn"
+          >
             Login
-          </button>
+          </motion.button>
         </form>
 
         <div className="auth-links">
           <p>
-            <a href="/forgot" className="link-light">
+            <a href="/forgot" className="link-forgot">
               Forgot Password?
             </a>
           </p>
-          <p style={{ color: "#e0e0e0" }}>
-            Don't have an account?{" "}
-            <a href="/register" className="link-light" style={{ fontWeight: "bold" }}>
+          <p className="register-text">
+            Don’t have an account?{" "}
+            <a href="/register" className="link-register">
               Register
             </a>
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
